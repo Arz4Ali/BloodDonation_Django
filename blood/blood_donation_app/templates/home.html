@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% block title %}Home - Blood Donation{% endblock %}
+
+{% block content %}
+
+  <img src="../static/images/image.png" alt="hero-image">
+
+  <h1>Our Team</h1>
+  <div class="ourteam">
+    <div class="team-member">
+      <img src="../static/images/boyavatar1.png" alt="Avatar" style="width:200px">
+      <div class="team-info">
+        <h4 class="name">John Doe</h4>
+        <span class="position">Medical Director</span>
+      </div>
+    </div>
+  
+    <div class="team-member">
+      <img src="../static/images/girlavatar1.png" alt="Avatar" style="width:200px">
+      <div class="team-info">
+        <h4 class="name">Jane Smith</h4>
+        <span class="position">Research Director</span>
+      </div>
+    </div>
+  
+    <div class="team-member">
+      <img src="../static/images/boyavatar1.png" alt="Avatar" style="width:200px">
+      <div class="team-info">
+        <h4 class="name">Michael Johnson</h4>
+        <span class="position">Operation Manager</span>
+      </div>
+    </div>
+  
+    <div class="team-member">
+      <img src="../static/images/girlavatar1.png" alt="Avatar" style="width:200px">
+      <div class="team-info">
+        <h4 class="name">Emily Davis</h4>
+        <span class="position">CEO</span>
+      </div>
+    </div>
+  </div>
+  
+  <h1>Testimonials</h1>
+  <div class="testimonials">
+    <div class="testimonial">
+      <p class="quote">"The blood donation process here is smooth and very well organized. I felt at ease throughout my entire visit!"</p>
+      <p class="author">- Sarah Williams</p>
+    </div>
+    <div class="testimonial">
+      <p class="quote">"I am truly grateful for the quick response in my time of need. Thank you for saving my life!"</p>
+      <p class="author">- Mark Johnson</p>
+    </div>
+    <div class="testimonial">
+      <p class="quote">"A wonderful experience. The staff is professional, and the donation process is quick and easy!"</p>
+      <p class="author">- Amanda Lee</p>
+    </div>
+  </div>
+
+
+  <div class="emergency-request">
+    <h2>Emergency Blood Request</h2>
+    <p>Need blood urgently? Contact our 24/7 emergency helpline for immediate assistance.</p>
+    <a href="tel:+1234567890" class="call-now-btn">Call Now</a>
+  </div>
+  
+  
+<link rel="stylesheet" type="text/css" href="../static/css/home.css">
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var contentElement = document.querySelector('.content');
+        if (contentElement) {
+          contentElement.classList.remove('content');
+        }
+      });
+      
+
+      
+      
+</script>
+{% endblock %}
+

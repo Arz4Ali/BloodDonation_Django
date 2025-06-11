@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block title %}Request Blood - Blood Donation{% endblock %}
+
+{% block content %}
+  <div class="main">
+    {% if success %}
+    <p class="success-message">Thanks for reaching us! We will contact to you shortly.</p>
+    <button class="newMessage"><a href="{% url 'request_blood' %}">Back to Request</a></button>
+  {% else %}
+  <label for="chk" id="chk" aria-hidden="true">Blood Request</label>
+    <p>If you need blood, please fill out the form below, and we will assist you as soon as possible.</p>
+    <form method="post">
+      {% csrf_token %}
+      
+      <div>
+        <input type="text" id="name" name="name" required placeholder="Enter your full name">
+      </div>
+
+      <div>
+        <input type="email" id="email" name="email" required placeholder="Enter your email">
+      </div>
+
+      <div>
+        <select id="blood_type" name="blood_type" required>
+          <option value="" disabled selected>Select your blood type</option>
+          <option value="A+">A+</option>
+          <option value="A-">A-</option>
+          <option value="B+">B+</option>
+          <option value="B-">B-</option>
+          <option value="O+">O+</option>
+          <option value="O-">O-</option>
+          <option value="AB+">AB+</option>
+          <option value="AB-">AB-</option>
+        </select>
+      </div>
+
+      <div>
+        <input type="number" id="quantity" name="quantity" required placeholder="Enter required blood quantity in liters" min="1" step="0.1">
+      </div>
+
+      <div>
+        <textarea id="reason" name="reason" required placeholder="Briefly explain the reason for the blood request"></textarea>
+      </div>
+
+      <div>
+        <button type="submit">Request Blood</button>
+      </div>
+    </form>
+    {% endif %}
+  </div>
+  <link rel="stylesheet" type="text/css" href="../static/css/blood_request.css">
+{% endblock %}

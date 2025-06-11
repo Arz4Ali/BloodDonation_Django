@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block title %}Profile - Blood Donation{% endblock %}
+
+{% block content %}
+<div class="profile-container">
+    {% if user %}
+    <div class="profile-card">
+        <h1>Profile</h1>
+        <img src="../static/images/boyavatar1.png" alt="profile-image-demo" style="border-radius: 50%; width:200px;">
+        <div class="profile-info">
+            <p><strong>Username:</strong> {{ user.username }}</p>
+            <p><strong>Email:</strong> {{ user.email }}</p>
+        </div>
+
+        <div class="password-change">
+            <button id="changePasswordButton" class="change-password-btn">Change Password</button>
+        </div>
+
+        <div class="delete-account">
+            <button id="deleteAccountButton" class="delete-btn">Delete Account</button>
+        </div>
+
+        <div class="logout-section">
+          <form action="{% url 'logout' %}" method="post">
+              {% csrf_token %}
+              <button type="submit" class="logout-btn">Logout</button>
+          </form>
+      </div>
+    </div>
+    {% else %}
+    <p>You are not logged in.</p>
+    {% endif %}
+</div>
+
+<div id="passwordChangePopup" class="popup">
+    <div class="popup-content">
+        <span class="close-popup close-pass-popup">&times;</span>
+        <h2>Change Password</h2>
+        <form id="passwordChangeForm" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="current_password">Current Password:</label>
+                <input type="password" name="current_password" id="current_password" required>
+            </div>
+            <div class="form-group">
+                <label for="new_password">New Password:</label>
+                <input type="password" name="new_password" id="new_password" required>
+            </div>
+            <div class="form-group">
+                <label for="confirm_new_password">Confirm New Password:</label>
+                <input type="password" name="confirm_new_password" id="confirm_new_password" required>
+            </div>
+            <button type="submit" class="change-password-btn">Change Password</button>
+        </form>
+        <div id="passwordChangeMessages">
+            {% if success %}
+            <p class="success-message">{{ success }}</p>
+            {% endif %}
+            {% if error %}
+            <p class="error-message">{{ error }}</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<div id="deleteAccountPopup" class="popup">
+    <div class="popup-content">
+        <span class="close-popup close-delete-popup">&times;</span>
+        <h2>Delete Account</h2>
+        <form action="{% url 'delete_account' %}" method="post"
+              onsubmit="return confirm('Are you sure you want to delete your account? This action cannot be undone.');">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="confirm_email">Confirm Email:</label>
+                <input type="email" name="confirm_email" id="confirm_email" required>
+            </div>
+            <button type="submit" class="delete-btn">Delete Account</button>
+        </form>
+    </div>
+</div>
+
+<link rel="stylesheet" type="text/css" href="../static/css/profile.css">
+
+
+<script src="../static/js/profile.js"></script>
+{% endblock %}
